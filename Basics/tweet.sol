@@ -60,4 +60,21 @@ contract TweeterApplication{
     function disAllow(address _operator) public {
         operators[msg.sender][_operator]=false;
     }
+
+    function getLatestTweet(uint count) public returns(Tweet[] memory) {
+        require(count>0 && count<=nextId,"Count is not valid");
+        Tweet[] memory _tweets= new Tweet[](count); 
+
+        uint j;
+        for(uint i=nextId-count;i<nextId;nextId++){
+            Tweet storage _structure= tweets[j];
+            _tweets[j]=Tweet(
+            _structure.id,
+            _structure.author,
+            _structure.content,
+            _structure.createdAt);
+            j++;
+        }
+        return _tweets;
+    }
 }
