@@ -61,12 +61,12 @@ contract TweeterApplication{
         operators[msg.sender][_operator]=false;
     }
 
-    function getLatestTweet(uint count) public returns(Tweet[] memory) {
+    function getLatestTweet(uint count) public view returns(Tweet[] memory) {
         require(count>0 && count<=nextId,"Count is not valid");
         Tweet[] memory _tweets= new Tweet[](count); 
 
         uint j;
-        for(uint i=nextId-count;i<nextId;nextId++){
+        for(uint i=nextId-count;i<nextId;i++){
             Tweet storage _structure= tweets[j];
             _tweets[j]=Tweet(
             _structure.id,
