@@ -69,7 +69,7 @@ contract TweeterApplication{
 
         uint j;
         for(uint i=nextId-count;i<nextId;i++){
-            Tweet storage _structure= tweets[j];
+            Tweet storage _structure= tweets[i];
             _tweets[j]=Tweet(
             _structure.id,
             _structure.author,
@@ -80,19 +80,19 @@ contract TweeterApplication{
         return _tweets;
     }
 
-    function getLatestOfUser(address _user, uint count) public view returns(Tweet[] memory){
-        Tweet[] memory _tweets= new Tweet[](count); //new memory array whose length is count
-        //tweetsOf[_user] is having all is of the users
-        uint[] memory ids= tweetsOf[_user]; //ids in an Arry
-        require(count>0 && count<=nextId,"Count is not valid");
+   function getLatestOfUser(address _user, uint count) public view returns (Tweet[] memory) {
+        Tweet[] memory _tweets = new Tweet[](count);
+        uint[] memory ids = tweetsOf[_user];
+        require(count > 0 && count <= ids.length, "Count is not valid");
         uint j;
-         for(uint i=tweetsOf[_user].length-count;i<tweetsOf[_user].length;i++){
-            Tweet storage _structure= tweets[ids[i]];
-            _tweets[j]=Tweet(
-            _structure.id,
-            _structure.author,
-            _structure.content,
-            _structure.createdAt);
+        for (uint i = ids.length - count; i < ids.length; i++) {
+            Tweet storage _structure = tweets[ids[i]];
+            _tweets[j] = Tweet(
+                _structure.id,
+                _structure.author,
+                _structure.content,
+                _structure.createdAt
+            );
             j++;
         }
         return _tweets;
