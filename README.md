@@ -4,6 +4,51 @@
 
 ---
 
+## 🛠️ Requirements & Deployment
+
+### Requirements
+- **Solidity Version**: `^0.8.0`
+- **Compiler Compatibility**: Remix IDE / Hardhat / Truffle
+- **Blockchain**: Ethereum-compatible (EVM-based)
+
+### ⚡ Deployment (Using Remix)
+1.  Open **Remix IDE**.
+2.  Create a new file `TweeterApplication.sol`.
+3.  Paste the smart contract code.
+4.  Compile using Solidity version **0.8.x**.
+5.  Deploy under any environment (**JavaScript VM** / **Injected Provider**).
+6.  Interact using Remix’s UI panel.
+
+---
+
+## 🔒 Security Notes
+- Always test **operator permissions** thoroughly before deploying on a mainnet.
+- Avoid posting **sensitive or excessively long content** due to gas constraints and the public nature of the blockchain.
+- Consider integrating **event logs** for efficient off-chain tracking of new tweets, messages, and follows.
+
+---
+
+## 🧠 Future Enhancements
+- Add **events**: `TweetCreated`, `MessageSent`, `Followed` for better off-chain indexing.
+- Implement **`unfollow()`** and **`getFollowingList()`** functions.
+- Include **pagination** for efficient tweet and message retrieval.
+- Develop a **Frontend integration** with Web3.js or Ethers.js.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute it with proper attribution.
+
+---
+
+## 👨‍💻 Author
+
+**Ritik Raushan**
+
+Blockchain & Web Developer | Open Source Enthusiast
+📧 ritikraushan9534@gmail.com
+
 ## 🚀 Features
 
 ### 📝 Tweet System
@@ -99,51 +144,3 @@ allow(0xDef456...); // Allow another address to post on your behalf
 // 📜 Retrieve Latest Tweets
 getLatestTweet(5); // Returns last 5 tweets
 
-
----
-
-## 🛠️ Requirements & Deployment
-
-### Requirements
-- **Solidity Version**: `^0.8.0`
-- **Compiler Compatibility**: Remix IDE / Hardhat / Truffle
-- **Blockchain**: Ethereum-compatible (EVM-based)
-
-### ⚡ Deployment (Using Remix)
-1.  Open **Remix IDE**.
-2.  Create a new file `TweeterApplication.sol`.
-3.  Paste the smart contract code.
-4.  Compile using Solidity version **0.8.x**.
-5.  Deploy under any environment (**JavaScript VM** / **Injected Provider**).
-6.  Interact using Remix’s UI panel.
-
----
-
-## 🔒 Security Notes
-- Always test **operator permissions** thoroughly before deploying on a mainnet.
-- Avoid posting **sensitive or excessively long content** due to gas constraints and the public nature of the blockchain.
-- Consider integrating **event logs** for efficient off-chain tracking of new tweets, messages, and follows.
-
----
-
-## 🧠 Future Enhancements
-- Add **events**: `TweetCreated`, `MessageSent`, `Followed` for better off-chain indexing.
-- Implement **`unfollow()`** and **`getFollowingList()`** functions.
-- Include **pagination** for efficient tweet and message retrieval.
-- Develop a **Frontend integration** with Web3.js or Ethers.js.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — you are free to use, modify, and distribute it with proper attribution.
-
----
-
-## 👨‍💻 Author
-
-**Ritik Raushan**
-
-Blockchain & Web Developer | Open Source Enthusiast
-
-📧 ritikraushan9534@gmail.com
