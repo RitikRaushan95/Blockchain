@@ -25,12 +25,14 @@ contract TweeterApplication{
     uint public messageId;
 
     function _tweet(address _from, string memory _content) internal  {
+       require(_from==msg.sender || operators[_from][msg.sender],"You don't have access");
         tweets[nextId] =  Tweet(nextId, _from, _content, block.timestamp);
         tweetsOf[_from].push(nextId);
         nextId++;
     }
 
     function _sendMessage(address _from, address _to, string memory _content) internal  {
+        require(_from==msg.sender || operators[_from][msg.sender],"You don't have access");
         conversations[_from].push(Message(messageId,_content,_from, _to, block.timestamp));
         messageId++;
     }
@@ -68,6 +70,24 @@ contract TweeterApplication{
         uint j;
         for(uint i=nextId-count;i<nextId;i++){
             Tweet storage _structure= tweets[j];
+            _tweets[j]=Tweet(
+            _structure.id,
+            _structure.author,
+            _structure.content,
+            _structure.createdAt);
+            j++;
+        }
+        return _tweets;
+    }
+
+    function getLatestOfUser(address _user, uint count) public view returns(Tweet[] memory){
+        Tweet[] memory _tweets= new Tweet[](count); //new memory array whose length is count
+        //tweetsOf[_user] is having all is of the users
+        uint[] memory ids= tweetsOf[_user]; //ids in an Arry
+        require(count>0 && count<=nextId,"Count is not valid");
+        uint j;
+         for(uint i=tweetsOf[_user].length-count;i<tweetsOf[_user].length;i++){
+            Tweet storage _structure= tweets[ids[i]];
             _tweets[j]=Tweet(
             _structure.id,
             _structure.author,
