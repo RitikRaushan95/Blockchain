@@ -1,7 +1,6 @@
 # 🐦 TweeterApplication – A Decentralized Microblogging Platform
 
-**TweeterApplication** is a Solidity-based decentralized social media (microblogging) contract inspired by Twitter (X).  
-It enables users to post tweets, follow others, send private messages, and delegate tweet permissions securely on the Ethereum blockchain.
+**TweeterApplication** is a Solidity-based decentralized social media (microblogging) contract inspired by Twitter (X). It enables users to post tweets, follow others, send private messages, and delegate tweet permissions securely on the Ethereum blockchain.
 
 ---
 
@@ -10,19 +9,19 @@ It enables users to post tweets, follow others, send private messages, and deleg
 ### 📝 Tweet System
 - Users can post tweets publicly on-chain.
 - Each tweet includes:
-  - Unique ID
-  - Author address
-  - Content
-  - Timestamp
+  - **Unique ID**
+  - **Author address**
+  - **Content**
+  - **Timestamp**
 - Supports **proxy tweeting** — authorized users (operators) can post on behalf of another account.
 
 ### 💬 Messaging System
 - Enables **private messages** between users.
 - Each message includes:
-  - Message ID
-  - Sender & receiver address
-  - Message content
-  - Timestamp
+  - **Message ID**
+  - **Sender & receiver address**
+  - **Message content**
+  - **Timestamp**
 
 ### 👥 Follow Mechanism
 - Users can follow other accounts.
@@ -41,7 +40,7 @@ It enables users to post tweets, follow others, send private messages, and deleg
 ## 🧩 Smart Contract Structure
 
 | Component | Type | Description |
-|------------|------|-------------|
+|:----------|:-----|:------------|
 | `Tweet` | Struct | Stores tweet data (id, author, content, timestamp) |
 | `Message` | Struct | Stores message details (id, content, from, to, timestamp) |
 | `tweets` | Mapping | Maps tweet ID → Tweet |
@@ -56,30 +55,30 @@ It enables users to post tweets, follow others, send private messages, and deleg
 
 ### **1. Tweet Functions**
 | Function | Access | Description |
-|-----------|---------|-------------|
+|:----------|:--------|:------------|
 | `tweet(string _content)` | Public | Create a tweet as the sender |
 | `tweet(address _from, string _content)` | Public | Create a tweet on behalf of another user (if authorized) |
 
 ### **2. Message Functions**
 | Function | Access | Description |
-|-----------|---------|-------------|
+|:----------|:--------|:------------|
 | `sendMessage(string _content, address _to)` | Public | Send a private message |
 | `sendMessage(address _from, address _to, string _content)` | Public | Send message as an operator on behalf of `_from` |
 
 ### **3. Follow System**
 | Function | Access | Description |
-|-----------|---------|-------------|
+|:----------|:--------|:------------|
 | `follow(address _followed)` | Public | Follow another user |
 
 ### **4. Operator Management**
 | Function | Access | Description |
-|-----------|---------|-------------|
+|:----------|:--------|:------------|
 | `allow(address _operator)` | Public | Grant operator permission |
 | `disAllow(address _operator)` | Public | Revoke operator permission |
 
 ### **5. Read Functions**
 | Function | Type | Description |
-|-----------|------|-------------|
+|:----------|:-----|:------------|
 | `getLatestTweet(uint count)` | View | Retrieve latest global tweets |
 | `getLatestOfUser(address _user, uint count)` | View | Retrieve latest tweets of a specific user |
 
@@ -87,65 +86,64 @@ It enables users to post tweets, follow others, send private messages, and deleg
 
 ## 🧪 Example Usage
 
-### 🐤 Post a Tweet
 ```solidity
+// 🐤 Post a Tweet
 tweet("Hello Blockchain World!");
 
-💬 Send a Message
+// 💬 Send a Message
 sendMessage("Hey there!", 0xAbC123...);
 
-🔑 Grant Operator Access
+// 🔑 Grant Operator Access
 allow(0xDef456...); // Allow another address to post on your behalf
 
-📜 Retrieve Latest Tweets
+// 📜 Retrieve Latest Tweets
 getLatestTweet(5); // Returns last 5 tweets
 
-🛠️ Requirements
 
-Solidity Version: ^0.8.0
+---
 
-Compiler Compatibility: Remix IDE / Hardhat / Truffle
+## 🛠️ Requirements & Deployment
 
-Blockchain: Ethereum-compatible (EVM-based)
+### Requirements
+- **Solidity Version**: `^0.8.0`
+- **Compiler Compatibility**: Remix IDE / Hardhat / Truffle
+- **Blockchain**: Ethereum-compatible (EVM-based)
 
-⚡ Deployment (Using Remix)
+### ⚡ Deployment (Using Remix)
+1.  Open **Remix IDE**.
+2.  Create a new file `TweeterApplication.sol`.
+3.  Paste the smart contract code.
+4.  Compile using Solidity version **0.8.x**.
+5.  Deploy under any environment (**JavaScript VM** / **Injected Provider**).
+6.  Interact using Remix’s UI panel.
 
-Open Remix IDE
+---
 
-Create a new file TweeterApplication.sol
+## 🔒 Security Notes
+- Always test **operator permissions** thoroughly before deploying on a mainnet.
+- Avoid posting **sensitive or excessively long content** due to gas constraints and the public nature of the blockchain.
+- Consider integrating **event logs** for efficient off-chain tracking of new tweets, messages, and follows.
 
-Paste the smart contract code.
+---
 
-Compile using Solidity version 0.8.x
+## 🧠 Future Enhancements
+- Add **events**: `TweetCreated`, `MessageSent`, `Followed` for better off-chain indexing.
+- Implement **`unfollow()`** and **`getFollowingList()`** functions.
+- Include **pagination** for efficient tweet and message retrieval.
+- Develop a **Frontend integration** with Web3.js or Ethers.js.
 
-Deploy under any environment (JavaScript VM / Injected Provider)
+---
 
-Interact using Remix’s UI panel.
+## 📄 License
 
-🔒 Security Notes
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute it with proper attribution.
 
-Always test operator permissions before deploying on mainnet.
+---
 
-Avoid posting sensitive or long content due to gas constraints.
+## 👨‍💻 Author
 
-Consider integrating event logs for efficient off-chain tracking.
+**Ritik Raushan**
 
-🧠 Future Enhancements
-
-Add events: TweetCreated, MessageSent, Followed.
-
-Add unfollow() and getFollowingList() functions.
-
-Include pagination for tweet retrieval.
-
-Frontend integration with Web3.js or Ethers.js.
-
-📄 License
-
-This project is licensed under the MIT License — you are free to use, modify, and distribute it with proper attribution.
-
-👨‍💻 Author
-
-Ritik Raushan
 Blockchain & Web Developer | Open Source Enthusiast
+
 📧 ritikraushan9534@gmail.com
